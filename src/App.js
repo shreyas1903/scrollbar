@@ -12,10 +12,10 @@ function App() {
   const [dataSource, setdataSource] = useState(Array.from({ length: 20 }));
   const [hasMore, sethasMore] = useState(true);
   const fetchMoreData = () => {
-    if (dataSource.length < 200) {
+    if (dataSource.length < 100) {
       setTimeout(() => {
         setdataSource(dataSource.concat(Array.from({ length: 20 })));
-      }, 500);
+      }, 1000);
     } else {
       sethasMore(false);
     }
@@ -29,7 +29,6 @@ function App() {
         hasMore={hasMore}
         loader=<p>loading...</p>
         endMessage={<p>You are all set</p>}
-        height={200}
       >
         {dataSource.map((item, index) => {
           return (

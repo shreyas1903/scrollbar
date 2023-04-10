@@ -1,7 +1,10 @@
 .App {
+  height: 100vh;
+  display: "flex";
   text-align: center;
 }
 .container {
+  display: "flex";
   padding: 40px;
 }
 
