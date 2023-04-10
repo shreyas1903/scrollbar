@@ -22,7 +22,7 @@ function App() {
   };
   return (
     <div className="App">
-      <p>scrollBar</p>
+      <h2>scrollBar</h2>
       <InfiniteScroll
         dataLength={dataSource.length}
         next={fetchMoreData}
