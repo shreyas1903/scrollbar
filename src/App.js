@@ -3,9 +3,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 
 const style = {
-  border: "1px solid red",
+  border: "1px solid green",
   margin: 12,
-  padding: 8,
+  padding: 10,
 };
 
 function App() {
@@ -32,7 +32,11 @@ function App() {
         height={200}
       >
         {dataSource.map((item, index) => {
-          return <div style={style}>This is a div #{index + 1} card</div>;
+          return (
+            <div style={style} key={index}>
+              <div>This is a div #{index + 1} card</div>
+            </div>
+          );
         })}
       </InfiniteScroll>
     </div>
