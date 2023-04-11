@@ -33,7 +33,7 @@ function App() {
         {dataSource.map((item, index) => {
           return (
             <div style={style} key={index}>
-              <div>This is a div #{index + 1} card</div>
+              <div>This is #{index + 1} card</div>
             </div>
           );
         })}
