@@ -10,6 +10,14 @@ const style = {
   padding: 10,
 };
 
+// onclick presshandler
+const pressHandler = (index) => {
+  <Routes>
+    <Route path="/#">dummy page</Route>
+  </Routes>;
+};
+const isItCorrect = () => {};
+
 function App() {
   const [dataSource, setdataSource] = useState(Array.from({ length: 20 }));
   const [hasMore, sethasMore] = useState(true);
@@ -35,7 +43,9 @@ function App() {
         {dataSource.map((item, index) => {
           return (
             <div style={style} key={index}>
-              <div>This is #{index + 1} card</div>
+              <div onClick={() => pressHandler(index)}>
+                This is #{index + 1} card
+              </div>
             </div>
           );
         })}
