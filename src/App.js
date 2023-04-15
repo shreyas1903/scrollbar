@@ -42,11 +42,11 @@ function App() {
       >
         {dataSource.map((item, index) => {
           return (
-            <div style={style} key={index}>
-              <div onClick={() => pressHandler(index)}>
-                This is #{index + 1} card
+            <Link to={"/user/details"}>
+              <div style={style} key={index}>
+                <div>This is #{index + 1} card</div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </InfiniteScroll>
