@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router";
+import Detailed from "./detailed";
 import { Route, Routes } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
@@ -42,7 +43,7 @@ function App() {
       >
         {dataSource.map((item, index) => {
           return (
-            <Link to={"/user/details"}>
+            <Link to={"/detailed"}>
               <div style={style} key={index}>
                 <div>This is #{index + 1} card</div>
               </div>
