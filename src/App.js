@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Detailed from "./detailed";
 import { Route, Routes } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -12,16 +13,32 @@ const style = {
 };
 
 // onclick presshandler
-const pressHandler = (index) => {
-  <Routes>
-    <Route path="/#">dummy page</Route>
-  </Routes>;
-};
-const isItCorrect = () => {};
 
 function App() {
   const [dataSource, setdataSource] = useState(Array.from({ length: 20 }));
   const [hasMore, sethasMore] = useState(true);
+  const navigate = useNavigate();
+
+  // useeffect
+  useEffect(() => {
+    return () => {};
+  });
+
+  // api call and fetch data
+  const fetchDetails = async (e) => {
+    const url_detail =
+      "https://jsonplaceholder.typicode.com/todos/${e.target.id}";
+    const response = await fetch(url_detail);
+    const details = await response.json();
+    console.log(details);
+    setdataSource(details);
+  };
+  const navigatePage = (index) => {
+    // e.preventDefault();
+    navigate("/detailed", { state: { index: index } });
+    // alert("hiii");
+  };
+  // fetch data
   const fetchMoreData = () => {
     if (dataSource.length < 100) {
       setTimeout(() => {
@@ -43,11 +60,21 @@ function App() {
       >
         {dataSource.map((item, index) => {
           return (
-            <Link to={"/detailed"}>
-              <div style={style} key={index}>
-                <div>This is #{index + 1} card</div>
-              </div>
-            </Link>
+            <div key={index}>
+              {/* <Link to={"/detailed"}> */}
+              {/* <div style={style} onClick={useNavigate("/detailed")}> */}
+              <button
+                className="button"
+                type="button"
+                onClick={() => navigatePage(index)}
+
+                // key={index}
+              >
+                This is {index} card
+              </button>
+              {/* // </div> */}
+              {/* </Link> */}
+            </div>
           );
         })}
       </InfiniteScroll>

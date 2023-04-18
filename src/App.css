@@ -8,6 +8,15 @@
   padding: 40px;
 }
 
+.button {
+  padding: 10;
+  border: "1px solid green";
+  /* margin-bottom: 1000; */
+  row-gap: 100rem;
+  height: 100px;
+  width: 1400px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
