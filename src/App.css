@@ -9,12 +9,13 @@
 }
 
 .button {
-  padding: 10;
-  border: "1px solid green";
+  /* padding: 10; */
+  /* border: "1px solid green"; */
   /* margin-bottom: 1000; */
+  /* justify-content: flex-end; */
   row-gap: 100rem;
   height: 100px;
-  width: 1400px;
+  width: 1300px;
 }
 
 .App-logo {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Detailed from "./detailed";
 import { Route, Routes } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -16,23 +15,24 @@ const style = {
 
 function App() {
   const [dataSource, setdataSource] = useState(Array.from({ length: 20 }));
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [hasMore, sethasMore] = useState(true);
   const navigate = useNavigate();
 
-  // useeffect
+  // api call and fetch data USING useEffect
   useEffect(() => {
-    return () => {};
-  });
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
-  // api call and fetch data
-  const fetchDetails = async (e) => {
-    const url_detail =
-      "https://jsonplaceholder.typicode.com/todos/${e.target.id}";
-    const response = await fetch(url_detail);
-    const details = await response.json();
-    console.log(details);
-    setdataSource(details);
-  };
   const navigatePage = (index) => {
     // e.preventDefault();
     navigate("/detailed", { state: { index: index } });
@@ -55,7 +55,7 @@ function App() {
         dataLength={dataSource.length}
         next={fetchMoreData}
         hasMore={hasMore}
-        loader=<p>loading...</p>
+        loader=<p>Loading...</p>
         endMessage={<p>You are all set</p>}
       >
         {dataSource.map((item, index) => {
