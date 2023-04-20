@@ -4,6 +4,7 @@ import Detailed from "./detailed";
 import { Route, Routes } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
+import Show from "./components/showLoading";
 
 const style = {
   border: "1px solid green",
@@ -11,22 +12,30 @@ const style = {
   padding: 10,
 };
 
-// onclick presshandler
+// onclick presshandler(not needed)
 
 function App() {
   const [dataSource, setdataSource] = useState(Array.from({ length: 20 }));
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // setLoading to load the page until the data is fetched
+  // const [loading, setLoading] = useState(true);
+  const [showLoading, setshowLoading] = useState(false);
+  // the infinite scroll component
   const [hasMore, sethasMore] = useState(true);
   const navigate = useNavigate();
 
   // api call and fetch data USING useEffect
   useEffect(() => {
+    // const lastItemId = dataSource[dataSource.length - 1]?.id;
+    setshowLoading(true);
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        setLoading(false);
+        // setLoading(false);
+        setTimeout(() => {
+          setshowLoading(false);
+        }, 2000);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -35,7 +44,10 @@ function App() {
 
   const navigatePage = (index) => {
     // e.preventDefault();
-    navigate("/detailed", { state: { index: index } });
+    navigate("/detailed", {
+      state: { data: data[index], id: data[index].id },
+    });
+
     // alert("hiii");
   };
   // fetch data
@@ -51,6 +63,8 @@ function App() {
   return (
     <div className="App">
       <h2>scrollBar</h2>
+
+      {showLoading && <Show />}
       <InfiniteScroll
         dataLength={dataSource.length}
         next={fetchMoreData}
@@ -70,7 +84,7 @@ function App() {
 
                 // key={index}
               >
-                This is {index} card
+                This is {index + 1} card
               </button>
               {/* // </div> */}
               {/* </Link> */}
