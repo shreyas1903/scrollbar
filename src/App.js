@@ -63,7 +63,9 @@ function App() {
   return (
     <div className="App">
       <h2>scrollBar</h2>
-
+      {/* this is conditional rendering */}
+      {/* here if the first is true then only the second would be returned  */}
+      {/* else ti would return false */}
       {showLoading && <Show />}
       <InfiniteScroll
         dataLength={dataSource.length}
