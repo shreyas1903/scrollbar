@@ -35,7 +35,7 @@ function App() {
         // setLoading(false);
         setTimeout(() => {
           setshowLoading(false);
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
